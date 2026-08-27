@@ -45,5 +45,4 @@ public class ObservacoesRequestDTO {
         this.imagens = imagens;
     }
 
-    
 }
