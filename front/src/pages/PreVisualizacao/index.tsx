@@ -32,7 +32,7 @@ import {
 import { FileText } from "lucide-react";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { api } from "../../Services/api";
+import { api, montarUrlArquivo } from "../../Services/api";
 
 type DadosGerais = {
   titulo: string;
@@ -78,10 +78,6 @@ export const PreVisualizacao = () => {
 
   const formatarNumero = (numero: number) => {
     return String(numero).padStart(2, "0");
-  };
-
-  const montarUrlFoto = (urlFoto: string) => {
-    return `http://localhost:8080/arquivos/${urlFoto.replace("ocorrencias/", "")}`;
   };
 
   useEffect(() => {
@@ -214,7 +210,7 @@ export const PreVisualizacao = () => {
                           key={fotoIndex}
                           onClick={() =>
                             setFotoModal({
-                              url: montarUrlFoto(foto.urlFoto),
+                              url: montarUrlArquivo(foto.urlFoto),
                               titulo: `Foto ${formatarNumero(fotoIndex + 1)}`,
                             })
                           }
@@ -223,7 +219,7 @@ export const PreVisualizacao = () => {
                             Foto {formatarNumero(fotoIndex + 1)}
                           </NumeroFoto>
                           <img
-                            src={montarUrlFoto(foto.urlFoto)}
+                            src={montarUrlArquivo(foto.urlFoto)}
                             alt={`Registro fotografico da observacao ${numeroObservacao}`}
                           />
                         </FotoFigure>

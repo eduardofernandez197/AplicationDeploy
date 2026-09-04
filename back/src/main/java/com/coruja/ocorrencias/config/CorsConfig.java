@@ -7,7 +7,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * Configuracao de CORS da API.
- * Define quais origens, metodos e headers o frontend pode usar ao chamar o backend.
+ * Define quais origens, metodos e headers o frontend pode usar ao chamar o
+ * backend.
  */
 @Configuration
 public class CorsConfig {
@@ -39,8 +40,7 @@ public class CorsConfig {
                                 "http://172.28.*:[*]",
                                 "http://172.29.*:[*]",
                                 "http://172.30.*:[*]",
-                                "http://172.31.*:[*]"
-                        )
+                                "http://172.31.*:[*]")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*");
 

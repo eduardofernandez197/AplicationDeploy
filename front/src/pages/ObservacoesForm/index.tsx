@@ -28,7 +28,7 @@ import {
     ObservacaoNumero,
     ObservacaoTexto
 } from "./style";
-import { api } from "../../Services/api";
+import { api, montarUrlArquivo } from "../../Services/api";
 
 type FotoSalva = {
     id: number;
@@ -60,10 +60,6 @@ export const ObservacoesForm = () => {
     }, [fotos]);
 
     const tiposPermitidos = ["image/jpeg", "image/png"];
-
-    const montarUrlFoto = (urlFoto: string) => {
-        return `http://localhost:8080/arquivos/${urlFoto.replace("ocorrencias/", "")}`;
-    };
 
     const validarFotosSelecionadas = (arquivos: File[]) => {
         const possuiArquivoInvalido = arquivos.some((arquivo) => !tiposPermitidos.includes(arquivo.type));
@@ -290,7 +286,7 @@ export const ObservacoesForm = () => {
                                             key={`salva-${foto.id}`}
                                             onClick={() =>
                                                 setFotoModal({
-                                                    url: montarUrlFoto(foto.urlFoto),
+                                                    url: montarUrlArquivo(foto.urlFoto),
                                                     titulo: `Foto ${String(index + 1).padStart(2, "0")}`,
                                                 })
                                             }
@@ -311,7 +307,7 @@ export const ObservacoesForm = () => {
                                             </FotoExcluirButton>
 
                                             <FotoPreviewImagem
-                                                src={montarUrlFoto(foto.urlFoto)}
+                                                src={montarUrlArquivo(foto.urlFoto)}
                                                 alt={`Foto salva ${index + 1}`}
                                             />
                                         </FotoPreviewCard>
